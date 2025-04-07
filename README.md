@@ -1,54 +1,51 @@
-# React + TypeScript + Vite
+# Login Supabase
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a simple example of how to use [Supabase](https://supabase.io/) to create a login system with email and password, and also to use the Google OAuth to login.
 
-Currently, two official plugins are available:
+## Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [React](https://reactjs.org/) as the frontend framework
+- [Supabase](https://supabase.io/) as the backend service
+- [Vite](https://vitejs.dev/) as the development server and bundler
+- [Tailwind CSS](https://tailwindcss.com/) as the CSS framework
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Login with email and password
+- Login with Google OAuth
+- Protected routes with Supabase's `auth` hook
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Setup
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+1. Clone the repository
+2. Install the dependencies with `npm install`
+3. Create a `.env` file with the following variables:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- `SUPABASE_URL`
+- `SUPABASE_ANON_KEY`
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+4. Start the development server with `npm run dev`
+5. Open the app in your browser at `http://localhost:5173`
+
+## How it works
+
+The app uses the `supabase` hook to manage the authentication state. When the user logs in with email and password, the app makes a request to the Supabase API to authenticate the user. If the user is authenticated, the app redirects the user to the protected route.
+
+When the user logs in with Google OAuth, the app makes a request to the Google OAuth API to authenticate the user. If the user is authenticated, the app redirects the user to the protected route.
+
+The protected route uses the `auth` hook to check if the user is authenticated. If the user is not authenticated, the app redirects the user to the login page.
+
+## Code organization
+
+The code is organized in the following folders:
+
+- `src`: contains the React components and the main application code
+- `src/assets`: contains the static assets, such as images and fonts
+- `src/components`: contains the reusable React components
+- `src/pages`: contains the pages of the app
+- `src/lib`: contains the utility functions and the Supabase client
+- `src/styles`: contains the global styles of the app
+
+## License
+
+This project is licensed under the MIT license. See the [LICENSE](LICENSE) file for more information.
